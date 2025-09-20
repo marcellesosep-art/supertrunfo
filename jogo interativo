@@ -73,3 +73,71 @@ printf('4 - pontos turisticos\n");
 printf("Rio de Janeiro:");
 scanf("%d", &escolha);
 
+#include <stdio.h>
+#include <string.h>
+
+// Estrutura de uma carta de cidade
+typedef struct {
+char nome[50];
+float populacao; // em milhões
+float area; // em km²
+float pib; // em bilhões R$
+float idh; // índice de 0 a 1
+} Cidade;
+
+// Função para comparar duas cidades
+void compararCidades(Cidade c1, Cidade c2, int atributo) {
+float valor1, valor2;
+
+switch (atributo) {
+case 1: // População
+valor1 = c1.populacao;
+valor2 = c2.populacao;
+break;
+case 2: // Área
+valor1 = c1.area;
+valor2 = c2.area;
+break;
+case 3: // PIB
+valor1 = c1.pib;
+valor2 = c2.pib;
+break;
+case 4: // IDH
+valor1 = c1.idh;
+valor2 = c2.idh;
+break;
+default:
+printf("Atributo inválido!\n");
+return;
+}
+
+printf("\nComparando pelo atributo escolhido...\n");
+printf("%s: %.2f vs %s: %.2f\n", c1.nome, valor1, c2.nome, valor2);
+
+if (valor1 > valor2) {
+printf(">>> %s venceu!\n", c1.nome);
+} else if (valor2 > valor1) {
+printf(">>> %s venceu!\n", c2.nome);
+} else {
+printf(">>> Empate!\n");
+}
+}
+
+int main() {
+Cidade rio = {"Rio de Janeiro", 6.7, 1200.0, 400.0, 0.799};
+Cidade sp = {"São Paulo", 12.3, 1521.0, 750.0, 0.805};
+
+int escolha;
+printf("Escolha o atributo para comparar:\n");
+printf("1 - População (milhões)\n");
+printf("2 - Área (km²)\n");
+printf("3 - PIB (bilhões R$)\n");
+printf("4 - IDH\n");
+printf("Digite sua escolha: ");
+scanf("%d", &escolha);
+
+compararCidades(rio, sp, escolha);
+
+return 0;
+}
+
