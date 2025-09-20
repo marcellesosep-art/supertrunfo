@@ -19,6 +19,28 @@ scanf("%d", &populacao1);
 printf("1.200 de %s:", Rio de Janeiro);
 scanf("%f", &area1);
 
+//densidade populacional Rio de Janeiro
+
+#include <stdio.h>
+int main() {
+float populacao = 6730729.0f; 
+float area = 1302.0f; 
+float pib_total = 359.64e9f; 
+
+// pib_total = 359,64 * 10^9
+
+// Cálculo da densidade populacional
+float densidade = populacao / area; // habitantes por km²
+
+// Cálculo do PIB per capita
+float pib_per_capita = pib_total / populacao; // reais por pessoa
+
+printf("Densidade populacional do Rio de Janeiro: %.2f hab/km²\n", densidade);
+printf("PIB per capita do Rio de Janeiro: R$ %.2f\n", pib_per_capita);
+
+return 0;
+}
+
 printf("1,3 de %s:", Rio de Janeiro);
 scanf("%f",&pib1);
 
