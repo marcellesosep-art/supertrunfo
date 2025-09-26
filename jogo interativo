@@ -138,6 +138,46 @@ scanf("%d", &escolha);
 
 compararCidades(rio, sp, escolha);
 
-return 0;
-}
+
+    printf("Modo: 1) Você escolhe o atributo  2) Atributo aleatório\n");
+    printf("Escolha o modo (1 ou 2): ");
+    if (!fgets(buffer, sizeof(buffer), stdin)) return 0;
+    modo = atoi(buffer);
+    if (modo == 1) {
+        printf("Digite o número do atributo (1-4): ");
+        if (!fgets(buffer, sizeof(buffer), stdin)) return 0;
+        escolha = atoi(buffer);
+        if (escolha < 1 || escolha > 4) {
+            printf("Atributo inválido. Saindo.\n");
+            return 0;
+        }
+    } else {
+        escolha = (rand() % 4) + 1;
+        printf("Atributo sorteado: %d\n", escolha);
+    }
+
+    printf("\n--- Valores ---\n");
+    mostrar_cidade(&rio);
+    printf("\n");
+    mostrar_cidade(&sp);
+    printf("\n--- Resultado da comparação ---\n");
+
+    int resultado = comparar(&rio, &sp, escolha);
+    switch (escolha) {
+        case 1: printf("Atributo: População\n\n"); break;
+        case 2: printf("Atributo: Área\n\n"); break;
+        case 3: printf("Atributo: PIB per capita\n\n"); break;
+        case 4: printf("Atributo: Densidade\n\n"); break;
+    }
+
+    if (resultado == 1) {
+        printf("Vencedor: %s\n", rio.nome);
+    } else if (resultado == -1) {
+        printf("Vencedor: %s\n", sp.nome);
+    } else {
+        printf("Empate!\n");
+    }
+
+    return 0;
+
 
